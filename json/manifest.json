@@ -1,0 +1,44 @@
+{
+  "name": "CloseThem",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "description": "Close them in GHE",
+  "permissions": [
+    "tabs",
+    "background",
+    "http://*/*",
+    "https://*/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "js/main.js",
+        "js/setting.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "background": {
+    "scripts": [
+      "js/bg.js"
+    ]
+  },
+  "icons": {
+    "16": "img/16.png",
+    "32": "img/32.png",
+    "48": "img/48.png",
+    "128": "img/128.png"
+  },
+  "browser_action": {
+    "default_title": "Close them",
+    "default_icon": {
+        "16": "img/16.png",
+        "32": "img/32.png",
+        "48": "img/48.png",
+        "128": "img/128.png"
+    }
+  }
+}
