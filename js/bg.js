@@ -3,8 +3,8 @@ function setText(str) {
 }
 
 chrome.browserAction.onClicked.addListener(tab => {
-    chrome.tabs.sendMessage(tab.id, "Action", response => {
+    chrome.tabs.sendMessage(tab.id, CLICK_EVENT, response => {
         setText(response);
-        setTimeout(() => setText(""), 1200)
+        setTimeout(() => setText(''), 900)
     })
 });

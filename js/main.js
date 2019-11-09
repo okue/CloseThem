@@ -1,15 +1,12 @@
-console.log('load main.js');
-
-function mainProc() {
+function mainProc(config) {
     const items = document.getElementById('files').getElementsByClassName('file');
-    Array.from(items)
-        .forEach(x => {
-            const fileName = x.firstElementChild.getAttribute('data-path');
-            if (fileName.match(new RegExp(setting.word))) {
-                changeStateOfItem(x);
-                console.log('-->', fileName)
-            }
-        });
+    Array.from(items).forEach(item => {
+        const fileName = item.firstElementChild.getAttribute('data-path');
+        if (fileName.match(new RegExp(config.target))) {
+            changeStateOfItem(item);
+            console.log('-->', fileName)
+        }
+    });
 }
 
 function changeStateOfItem(x) {
@@ -21,17 +18,20 @@ function changeStateOfItem(x) {
     }
 }
 
-chrome.extension.onMessage.addListener(function (request, sender, sendResponse) {
-    if (request === "Action") {
-        console.log('try to close them');
-        try {
-            mainProc();
-            sendResponse("success")
-        } catch (e) {
-            sendResponse("fail");
-            console.log("error", e);
-        }
-    } else {
-        console.log('No Action')
+chrome.extension.onMessage.addListener((request, sender, sendResponse) => {
+    if (request !== CLICK_EVENT) {
+        console.warn('get unexpected request', request);
+        return
+    }
+    console.log('try to close them');
+    let resultMessage;
+    try {
+        getConfig(config => mainProc(config));
+        resultMessage = 'ok';
+    } catch (e) {
+        console.log('error', e);
+        resultMessage = 'fail';
+    } finally {
+        sendResponse(resultMessage)
     }
 });

@@ -6,6 +6,7 @@
   "permissions": [
     "tabs",
     "background",
+    "storage",
     "http://*/*",
     "https://*/*"
   ],
@@ -15,16 +16,22 @@
         "<all_urls>"
       ],
       "js": [
-        "js/main.js",
-        "js/setting.js"
+        "js/constant.js",
+        "js/util.js",
+        "js/main.js"
       ],
       "run_at": "document_idle"
     }
   ],
   "background": {
     "scripts": [
+      "js/constant.js",
       "js/bg.js"
     ]
+  },
+  "options_ui": {
+    "page": "html/options.html",
+    "chrome_style": true
   },
   "icons": {
     "16": "img/16.png",
@@ -35,10 +42,10 @@
   "browser_action": {
     "default_title": "Close them",
     "default_icon": {
-        "16": "img/16.png",
-        "32": "img/32.png",
-        "48": "img/48.png",
-        "128": "img/128.png"
+      "16": "img/16.png",
+      "32": "img/32.png",
+      "48": "img/48.png",
+      "128": "img/128.png"
     }
   }
 }
