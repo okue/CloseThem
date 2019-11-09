@@ -1,9 +1,9 @@
 // Saves options to chrome.storage
 function save_options() {
     const target = document.getElementById('target').value;
-    chrome.storage.sync.set({target}, () => {
+    setConfig({target}, () => {
         // Update status to let user know options were saved.
-        var status = document.getElementById('status');
+        const status = document.getElementById('status');
         status.textContent = 'Options saved.';
         setTimeout(() => {
             status.textContent = '';
@@ -13,7 +13,7 @@ function save_options() {
 
 // Saves default options to chrome.storage
 function reset_options() {
-    chrome.storage.sync.set(defaultConfig, () => {
+    setConfig(defaultConfig, () => {
         // Update status to let user know options were saved.
         const status = document.getElementById('status');
         status.textContent = 'Options reset.';
@@ -26,8 +26,8 @@ function reset_options() {
 
 // Restores select box state using the preferences stored in chrome.storage.
 function restore_options() {
-    chrome.storage.sync.get(defaultConfig, (items) => {
-        document.getElementById('target').value = items.target
+    getConfig(config => {
+        document.getElementById('target').value = config.target
     });
 }
 
