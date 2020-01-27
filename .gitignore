@@ -1,3 +1,4 @@
 *.zip
 chrome-ext-close-them
 .idea
+*.pem
