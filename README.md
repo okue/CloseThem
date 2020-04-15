@@ -8,6 +8,11 @@
 
 ## How to use
 
+1. `./make.sh` creates `./chrome-ext-close-them` directory.
+2. import `./chrome-ext-close-them` directory at chrome://extensions page.
+
+or
+
 1. Download [chrome-ext-close-them.crx](https://github.com/okue/CloseThem/blob/master/chrome-ext-close-them.crx)
 2. Drag & drop it at chrome://extensions page.
 
