@@ -2,3 +2,4 @@
 chrome-ext-close-them
 .idea
 *.pem
+.DS_Store
